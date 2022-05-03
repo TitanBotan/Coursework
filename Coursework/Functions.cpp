@@ -1,11 +1,14 @@
 #include "Functions.h"
-#include <string>
 using namespace std;
+
+
 
 string str = "";
 int Last() {
+    Collection name;
+    
     int counter = 0;
-    ofstream outClientFile("D:\Courswork.txt", ios::app);
+    ofstream outClientFile(name.FileName, ios::app);
     if (!outClientFile)
     {
         cerr << "File could not be opened" << endl;
@@ -20,7 +23,8 @@ int Last() {
 
 void last_line()
 {
-    ifstream inClientFile("D:\Courswork.txt", ios::in);
+    Collection name;
+    ifstream inClientFile(name.FileName, ios::in);
     if (!inClientFile)
     {
         cerr << "File could not be opened" << endl;
@@ -33,8 +37,8 @@ void last_line()
 
 int searcher(string word)
 {
-
-    string filename = "D:\Courswork.txt";
+    Collection name;
+    string filename = name.FileName;
 
     ifstream File;
     File.open(filename); //Попытка открытия файла
@@ -58,8 +62,9 @@ int searcher(string word)
 
 string GetPredNumber(int n)
 {
+    Collection name;
     string strr;
-    ifstream fs("D:\Courswork.txt");
+    ifstream fs(name.FileName);
     int i = 1;
 
     while (getline(fs, strr))
@@ -78,9 +83,10 @@ string GetPredNumber(int n)
 }
 
 void dell(int n) {
+    Collection name;
     ifstream file_in;
 
-    file_in.open("D:\Courswork.txt");
+    file_in.open(name.FileName);
 
     if (!file_in)
     {
@@ -113,7 +119,7 @@ void dell(int n) {
 
     ofstream file_out;
 
-    file_out.open("D:\Courswork.txt", std::ios::trunc | std::ios::binary); //открыть и обрезать
+    file_out.open(name.FileName, std::ios::trunc | std::ios::binary); //открыть и обрезать
 
     //записать
 
@@ -122,6 +128,7 @@ void dell(int n) {
 }
 
 void find_parametr() {
+    Collection name;
     char search[255], vvod[255], base[9] = { 0 }, * c; //search - что ищем; answer - ответ; base - путь к базе;
     bool dialog = true;
     string line = "";
@@ -187,7 +194,7 @@ void find_parametr() {
     }
     else cout << "ОШИБКА!!!";
 
-    string s = "D:\Courswork.txt";
+    string s = name.FileName;
     ifstream input(s.c_str());
     if (!input)
     {
@@ -254,3 +261,4 @@ void find_parametr() {
         }
     }
 }
+
