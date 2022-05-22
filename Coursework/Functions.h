@@ -14,63 +14,46 @@ using std::endl;
 
 int Last();
 void last_line();
-
-
 int searcher(string word);
-
 string GetPredNumber(int n);
-
 void dell(int n);
-
 void find_parametr();
-
-
-
-
 
 class Collection
 {
 public:
-    string FileName = "D:\Courswork.txt";
-    string TimeFileName = "D:\TimeCourswork.txt";
+    string FileName = "Courswork.txt";
+    string TimeFileName = "TimeCourswork.txt";
 	string Tipe;
 	int Nominal;
 	int Year;
 	int Prise;
-    
-private:
-
-	
 };
-
-
 
 class Record : public Collection
 {
 public:
 	void conclution() {
         long long int number;
-        Collection a;
         cout << "Добавление нового предмета" << endl << endl;
         cout << "Введите тип: " << endl;
-        cin >> a.Tipe;
+        getline(cin,Tipe);
         cout << "Введите номинал(если нет номинала введите 0): " << endl;
-        cin >> a.Nominal;
+        cin >> Nominal;
         cout << "Введите год: " << endl;
-        cin >> a.Year;
+        cin >> Year;
         cout << "Введите цену: " << endl;
-        cin >> a.Prise;
+        cin >> Prise;
 
         number = Last();
 
         ofstream F;
-        F.open(a.FileName, ios::app);
-        F << endl << "Тип: " << a.Tipe << endl;
-        F << "Номинал: " << a.Nominal << "ед." << endl;
-        F << "Год: " << a.Year << "г." << endl;
-        F << "Цена: " << a.Prise << "руб." << endl;
+        F.open(FileName, ios::app);
+        F << endl << "Тип: " << Tipe << endl;
+        F << "Номинал: " << Nominal << "ед." << endl;
+        F << "Год: " << Year << "г." << endl;
+        F << "Цена: " << Prise << "руб." << endl;
         F << number + 1 << "." << endl;
         F.close();
-
 	}
 };

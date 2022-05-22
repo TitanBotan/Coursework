@@ -1,12 +1,25 @@
 ﻿using namespace std;
 #include "Functions.h"
-
 void main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     char MenuChoise, Exit, del;
-
+    Collection name;
+    ofstream File(name.FileName, ios::app);
+    if (!File.is_open())
+    {
+        cerr << "Файл Courswork не удалось открыть!" << endl;
+        exit(1);
+    }
+    File.close();
+    ofstream TimeFile(name.TimeFileName, ios::app);
+    if (!TimeFile.is_open())
+    {
+        cerr << "Файл TimeCourswork не удалось открыть!" << endl;
+        exit(1);
+    }
+    TimeFile.close();
     do
     {
         do
@@ -26,7 +39,6 @@ void main()
         {
             Record fun;
             fun.conclution();
-
             break;
         }
         case '2':
@@ -64,10 +76,8 @@ void main()
             }
             wifs.close();
             wofs.close();
-
             Record fun;
             fun.conclution();
-
             ofstream F1{ a.FileName, ios::app };
             ifstream F2{ a.TimeFileName };
             string string; //Строка-буфер
@@ -99,7 +109,6 @@ void main()
             int i = 0;
             int k = 3;
             int dl = Last();
-            //char vvod[50] = "";
             char search[50] = "";
             string st = "";
             string* mas = new string[dl];
@@ -108,19 +117,13 @@ void main()
                 i += 1;
                 k += 6;
             }
-
             sort(mas, mas + dl);
-
             i = 0;
-
             while (i < dl) {
-                //cout << mas[i] << endl;
                 if ((i == 0) or (mas[i - 1] != mas[i]))
                 {
                     st = mas[i];
-
                     const char* vvod = st.c_str();
-
                     for (int ii = 0, j = 0; ii < 50; ii++)
                         if (vvod[ii] != 50)
                             search[j++] = vvod[ii];
@@ -133,7 +136,6 @@ void main()
                         n += 1;
                         if (strstr(buffer, search)) {
                             cout << buffer << endl;
-
                             line = GetPredNumber(n + 1);
                             cout << line << endl;
                             line = GetPredNumber(n + 2);
@@ -147,7 +149,7 @@ void main()
                 }
                 i += 1;
             }
-            delete mas;
+            delete[] mas;
             break;
         }
 
@@ -158,11 +160,7 @@ void main()
             cin >> input;
             cin.get();
             predmet = input + ".";
-
             int number_of_line = searcher(predmet);
-
-            //cout << number_of_line << endl;
-
             for (int n = number_of_line - 4; n < number_of_line; n++) {
                 string line = GetPredNumber(n);
                 cout << line << endl;
@@ -182,7 +180,6 @@ void main()
         }
     
         cout << endl << "Хотите выполнить другое действие? (1 - да, 0 - нет)" << endl;
-        //cin >> Exit;
         Exit = _getch();
     } while (Exit != '0');
     
